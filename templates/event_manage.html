@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guest Manage</title>
+        <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="/static/jquery-3.1.1.js"></script>
+    <script src="/static/bootstrap-3.3.7/js/bootstrap.js"></script>
+</head>
+<body role="document">
+<!--导航栏-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/event_manage/" class="navbar-brand">Guest Manage System</a>
+        </div>
+        <div id="navbar" class="coolapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">发布会</a></li>
+                <li ><a href="/guest_manage/">嘉宾</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">{{ user }}</a></li>
+                <li ><a href="/logout/">退出</a></li>
+            </ul>
+        </div>
+    </div>
+<</nav>
+<!--发布会搜索表单-->
+<div class="page-header" style="padding-top: 60px;">
+    <div id="navbar" class="navbar-collapse collapse">
+        <form class="navbar-form" method="get" action="/search_name/">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="名称" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">搜索</button>
+        </form>
+    </div>
+    <div>
+        <a href="/event_add/" style="padding-left: 1506px;">
+            <button class="btn btn-primary" >添加</button>
+        </a>
+    </div>
+
+</div>
+<!--发布会列表-->
+
+<div class="row" >
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>名称</th>
+                <th>参加人数</th>
+                <th>状态</th>
+                <th>地址</th>
+                <th>时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                <td>{{ event.id }}</td>
+                <td>{{ event.name }}</td>
+                    <td>{{ event.limit }}</td>
+                <td>{{ event.status }}</td>
+                <td>{{ event.address }}</td>
+                <td>{{ event.start_time }}</td>
+                <td>
+
+                    <a href="/event_edit/{{ event.id }}">
+                        <button class="btn btn-success">编辑</button>
+                    </a>
+                    <a href="/event_del/{{ event.id }}">
+                         <button class="btn btn-danger">删除</button>
+                    </a>
+                </td>
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+  <div class="pager">
+        {{ page_html|safe }}
+    </div>
+</body>
+</html>

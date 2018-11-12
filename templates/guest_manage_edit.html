@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>Title</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/guest_manage/" class="navbar-brand">Guest Manage System</a>
+        </div>
+        <div id="navbar" class="coolapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">嘉宾</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">{{ user }}</a></li>
+                <li ><a href="/logout/">退出</a></li>
+            </ul>
+        </div>
+    </div>
+<</nav>
+    <form method="post" style="padding-top: 150px; padding-left: 250px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"value="提交" class="btn-primary">
+        <a href="/guest_manage/"><input type="button"value="取消" class="btn-danger"></a>
+
+</form>
+</body>
+</html>
